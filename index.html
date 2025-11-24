@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Adventskalender</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<header class="site-header">
+  <h1>Adventskalender</h1>
+  <p class="subtitle">
+    Hallo Schatz, <br> <br>
+    Ich weiß ich darf das eigentlich garnicht aber ich habe dir einen kleinen Adventskalender gemacht. Neben der kleinen Tütchen wird dir diese Website hoffentlich helfen über die Adventszeit etwas Freude zu haben. <br>
+    Ich habe dich Uuuuunendlich lieb ♡<br> <br>
+    PS. die Türchen öffnen sich erst ab dem passenden Tag</p>
+</header>
+
+<main class="calendar-wrap">
+  <section class="calendar-grid">
+    <script>
+      const root = document.currentScript.parentElement;
+      for (let i = 0; i < 24; i++) {
+        const btn = document.createElement('button');
+        btn.className = "door";
+        btn.setAttribute('data-slot', i);
+        btn.innerHTML = `
+          <div class="door-inner">
+            <div class="front"><span class="num">?</span></div>
+            <div class="back"><div class="content">➡️</div></div>
+          </div>`;
+        root.appendChild(btn);
+      }
+    </script>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Hihi :D </p>
+</footer>
+
+<script>
+
+
+const fileMap = {
+  1:  "tuerchen1_feracsa.html",
+  2:  "tuerchen2_kdhabye.html",
+  3:  "tuerchen3_lanhsze.html",
+  4:  "tuerchen4_fdsaert.html",
+  5:  "tuerchen5_klopvfd.html",
+  6:  "tuerchen6_dfgztre.html",
+  7:  "tuerchen7_cvbnhzu.html",
+  8:  "tuerchen8_fgbnhui.html",
+  9:  "tuerchen9_aaaaaaa.html",
+  10: "tuerchen10_asdcfgh.html",
+  11: "tuerchen11_abcdefg.html",
+  12: "tuerchen12_iloveuu.html",
+  13: "tuerchen13_hihihih.html",
+  14: "tuerchen14_abshdeh.html",
+  15: "tuerchen15_1234567.html",
+  16: "tuerchen16_1122024.html",
+  17: "tuerchen17_ascdfrt.html",
+  18: "tuerchen18_adfvbgh.html",
+  19: "tuerchen19_schatzz.html",
+  20: "tuerchen20_mmaximm.html",
+  21: "tuerchen21_johanna.html",
+  22: "tuerchen22_asdcfgt.html",
+  23: "tuerchen23_adventt.html",
+  24: "tuerchen24_juhuuuu.html"
+}
+
+const pageLinks = Array.from({ length: 24 }, (_, i) => fileMap[i + 1]);
+
+//Moment der Freischaltung
+function unlockDateFor(day) {
+  return new Date(`2025-11-${String(day).padStart(2,"0")}T00:00:00`);
+}
+
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+(function init() {
+  const doors = [...document.querySelectorAll('.door')];
+  const numbers = shuffle([...Array(24)].map((_,i)=>i+1));
+  const now = new Date();
+
+  doors.forEach((btn, idx) => {
+    const num = numbers[idx];
+    btn.dataset.number = num;
+    btn.querySelector('.num').textContent = num;
+    const back = btn.querySelector('.back .content');
+    back.textContent = "Öffnen →";
+
+    const url = pageLinks[num - 1];
+    const unlock = unlockDateFor(num);
+    const locked = now < unlock;
+
+    if (locked) btn.classList.add("locked");
+
+    btn.addEventListener("click", () => {
+      if (btn.classList.contains("locked")) return;
+      window.location.href = url;
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
