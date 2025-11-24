@@ -15,6 +15,12 @@
     Ich weiß ich darf das eigentlich garnicht aber ich habe dir einen kleinen Adventskalender gemacht. Neben der kleinen Tütchen wird dir diese Website hoffentlich helfen über die Adventszeit etwas Freude zu haben. <br>
     Ich habe dich Uuuuunendlich lieb ♡<br> <br>
     PS. die Türchen öffnen sich erst ab dem passenden Tag</p>
+  
+  <div id="clock-box">
+  <p id="clock-title">Es ist aktuell</p>
+  <span id="clock-date"></span>
+  <span id="clock-time"></span>
+</div>
 </header>
 
 <main class="calendar-wrap">
@@ -109,6 +115,33 @@ function shuffle(a){
     });
   });
 })();
+function updateClock() {
+  const now = new Date();
+
+  const dateEl = document.getElementById("clock-date");
+  const timeEl = document.getElementById("clock-time");
+
+  // Datum formatiert (z.B. Freitag, 1. Dezember 2024)
+  const dateStr = now.toLocaleDateString("de-DE", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
+
+  // Uhrzeit (HH:MM:SS)
+  const timeStr = now.toLocaleTimeString("de-DE", {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+
+  dateEl.textContent = dateStr;
+  timeEl.textContent = timeStr;
+}
+
+// alle 500ms aktualisieren
+setInterval(updateClock, 500);
+updateClock(); // Initialer Start
 </script>
 
 </body>

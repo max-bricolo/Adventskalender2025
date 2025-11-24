@@ -80,5 +80,38 @@
     background:rgba(255,255,255,0.1);
     transform:rotateY(180deg);
   }
+
+  #clock-box {
+  text-align: center;
+  margin: 20px auto 40px;
+  padding: 15px 25px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  display: inline-block;
+}
+
+#clock-date {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--gold);
+}
+
+#clock-title {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--gold);
+}
+
+#clock-time {
+  display: block;
+  font-size: 2rem;
+  margin-top: 5px;
+  color: #fff;
+  letter-spacing: 1px;
+}
   
   .site-footer{text-align:center;margin:20px 0;opacity:.85;}

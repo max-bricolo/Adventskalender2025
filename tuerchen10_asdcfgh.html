@@ -16,6 +16,7 @@
   <div class="locked-box">
     <h2>Türchen 10 ist noch verschlossen</h2>
     <p>Öffnet am <strong id="unlock-date-text"></strong> um 00:00 Uhr</p>
+    <a href="index.html" class="back-link">Zurück zum Adventskalender</a>
   </div>
 </div>
 
@@ -50,7 +51,7 @@ const number = 10;                 // Türchen-Nummer einsetzen
 const pdfPath = `plaene/${number}.pdf`;
 
 // Freigabedatum:
-const unlockDate = new Date(`${new Date().getFullYear()}-11-${String(number).padStart(2, "0")}T00:00:00`);
+const unlockDate = new Date(`${new Date().getFullYear()}-12-${String(number).padStart(2, "0")}T00:00:00`);
 
 // DOM refs
 const overlay = document.getElementById("locked-overlay");
